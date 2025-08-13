@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kenya Mangrove Health Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mangrove-map.css">
+</head>
+<body>
+    <div id="header">
+        <div class="logo">
+            <div class="logo-icon">M</div>
+            <div>
+                <h1>Kenya Mangrove Tracker</h1>
+                <p>Monitoring coastal ecosystems since 2015</p>
+            </div>
+        </div>
+        <div>
+            <button id="report-btn">Report Issue</button>
+        </div>
+    </div>
+
+    <div id="map-container">
+        <div class="wave-bg">
+            <div class="wave"></div>
+        </div>
+        <div id="map"></div>
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h2>Kenyan Mangrove Coverage</h2>
+                <button class="close-sidebar">×</button>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tab active" data-tab="coverage">Coverage</div>
+                <div class="tab" data-tab="ecosystem">Ecosystem</div>
+                <div class="tab" data-tab="laws">Laws</div>
+                <div class="tab" data-tab="success">Success Stories</div>
+            </div>
+            
+            <div class="sidebar-content">
+                <!-- Coverage Tab -->
+                <div class="tab-content active" id="coverage-tab">
+                    <div class="timeline-container">
+                        <div class="timeline-header">
+                            <h3>National Coverage Data</h3>
+                            <div class="trend-indicator">
+                                <span class="trend-up">▲ 1.4% growth since 2015</span>
+                            </div>
+                        </div>
+                        <div class="year-selector">
+                            <button class="year-pill">2015</button>
+                            <button class="year-pill">2016</button>
+                            <button class="year-pill">2017</button>
+                            <button class="year-pill">2018</button>
+                            <button class="year-pill">2019</button>
+                            <button class="year-pill active">2020</button>
+                            <button class="year-pill">2021</button>
+                            <button class="year-pill">2022</button>
+                            <button class="year-pill">2023</button>
+                            <button class="year-pill">2024</button>
+                        </div>
+                        
+                        <div class="health-metrics">
+                            <div class="metric-card">
+                                <h4>Total Coverage</h4>
+                                <div class="metric-value">61,170 ha</div>
+                                <div class="trend-indicator">
+                                    <span class="trend-up">▲ 0.1%</span> from 2019
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <h4>Lamu Coverage</h4>
+                                <div class="metric-value">37,314 ha</div>
+                                <div class="trend-indicator">
+                                    <span class="trend-up">▲ 61%</span> of national total
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="zone-health">
+                        <h3>Key Mangrove Sites</h3>
+                        <div class="zone-cards">
+                            <div class="zone-card">
+                                <h4>Lamu Archipelago</h4>
+                                <p>Coverage: 37,314 ha (61%)</p>
+                                <p>Status: Stable</p>
+                            </div>
+                            <div class="zone-card warning">
+                                <h4>Kilifi Creek</h4>
+                                <p>Coverage: 8,536 ha</p>
+                                <p>Status: Restoration needed</p>
+                            </div>
+                            <div class="zone-card critical pulse">
+                                <h4>Tana Delta</h4>
+                                <p>Coverage: 3,260 ha</p>
+                                <p>Status: Critical</p>
+                                <button>Join Restoration</button>
+                            </div>
+                            <div class="zone-card">
+                                <h4>Mtwapa Creek</h4>
+                                <p>Coverage: 3,771 ha</p>
+                                <p>Status: Protected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ecosystem Tab -->
+                <div class="tab-content" id="ecosystem-tab">
+                    <div class="ecosystem-info">
+                        <h3>Kenya's Mangrove Ecosystem</h3>
+                        <p>Mangroves are trees and shrubs that grow in intertidal zones along tropical and sub-tropical coastlines. In Kenya, mangroves occupy protected shorelines, lagoons, creeks and estuaries distributed along the 600 km coastline.</p>
+                        <p>Mangroves cover about 61,271 hectares (approximately 3% of Kenya's total natural forest area), with the majority in Lamu County.</p>
+                    </div>
+                    
+                    <div class="ecosystem-info">
+                        <h3>Ecological Benefits</h3>
+                        <p>• Shoreline protection during tropical storms</p>
+                        <p>• Nutrient cycling due to high productivity</p>
+                        <p>• Climate change mitigation through carbon storage</p>
+                        <p>• Habitat for marine wildlife</p>
+                    </div>
+                    
+                    <div class="ecosystem-info">
+                        <h3>Economic Benefits</h3>
+                        <p>• Timber for construction and fuelwood</p>
+                        <p>• Tannins for cloth dyeing and leather processing</p>
+                        <p>• Nectar for beekeeping and honey production</p>
+                        <p>• Wood for boats and fishing stakes</p>
+                    </div>
+                    
+                    <div class="ecosystem-info">
+                        <h3>Threats to Mangroves</h3>
+                        <p>• Overexploitation for building poles, fencing, and charcoal</p>
+                        <p>• Selective harvesting reducing biodiversity</p>
+                        <p>• Pollution from oil spills and sediment contamination</p>
+                        <p>• Conversion of areas for salt production</p>
+                    </div>
+                </div>
+                
+                <!-- Laws Tab -->
+                <div class="tab-content" id="laws-tab">
+                    <div class="law-card">
+                        <h4>Constitution of Kenya (Article 69)</h4>
+                        <p>Mandates sustainable exploitation, utilization and conservation of the environment and natural resources. Requires maintaining at least 10% tree cover of Kenya's land area (including mangroves which constitute ~3%).</p>
+                        <a href="https://www.kenyalaw.org/kl/index.php?id=398" target="_blank">Read more →</a>
+                    </div>
+                    
+                    <div class="law-card">
+                        <h4>Forest Act (2005)</h4>
+                        <p>Recognizes mangrove management as protected under Article 69. Allows formation of community forest associations (like Lamu Environment Foundation) and regulates mangrove harvesting through licensing.</p>
+                        <a href="https://www.kenyalaw.org/kl/fileadmin/pdfdownloads/Acts/ForestAct_No7of2005.pdf" target="_blank">Read more →</a>
+                    </div>
+                    
+                    <div class="law-card">
+                        <h4>Forest Conservation and Management Act (2016)</h4>
+                        <p>Permits community associations to participate in sustainable forest management. Strengthens protection through specific harvesting regulations.</p>
+                        <a href="https://www.kenyalaw.org/kl/fileadmin/pdfdownloads/Acts/ForestConservationandManagementAct_No34of2016.pdf" target="_blank">Read more →</a>
+                    </div>
+                    
+                    <div class="law-card">
+                        <h4>National Mangrove Ecosystem Management Plan (2017-2027)</h4>
+                        <p>Engages stakeholders in restoration activities with best-practice approaches at community and institutional levels. Includes ecosystem attributes, challenges, and step-by-step restoration guidance.</p>
+                        <a href="https://www.kefri.org/" target="_blank">Read more →</a>
+                    </div>
+                </div>
+                
+                <!-- Success Stories Tab -->
+                <div class="tab-content" id="success-tab">
+                    <div class="success-story">
+                        <h4>Lamu Beekeeping Initiative</h4>
+                        <p>The Lamu Environment Foundation provides grants for beekeepers, increasing apiculture while reducing mangrove degradation. Studies show bees thrive near mangroves, creating a sustainable livelihood alternative.</p>
+                        <a href="https://lamuenvironment.org/grants/beekeeping-for-lamu-mangroves/" target="_blank">Learn more →</a>
+                    </div>
+                    
+                    <div class="success-story">
+                        <h4>Mkupe Village Conservation</h4>
+                        <p>Youth Pawa organization replants mangroves to create marine habitats. Their efforts have increased fish, crab, and prawn populations, encouraging marine aquaculture over timber cutting.</p>
+                        <a href="https://about.restor.eco/blog/turning-the-tide-with-mangrove-conservation" target="_blank">Learn more →</a>
+                    </div>
+                    
+                    <div class="success-story">
+                        <h4>Kilifi Nursery Program</h4>
+                        <p>Seatrees organization's mangrove nurseries in Marereni forest have created jobs while protecting against storm surges. The program reduces overreliance on timber products.</p>
+                        <a href="https://seatrees.org/pages/marereni-kenya" target="_blank">Learn more →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="toggle-sidebar" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="mangrove-map.js"></script>
+</body>
+</html>
